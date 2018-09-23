@@ -52,13 +52,15 @@ def update_nets_number(settings, nets, fishes, screen):
 
 
 def fire(settings, screen, ship, nets):
-    if settings.net_limit > 0:
+    if settings.net_limit >= 0:
         net = Fishing_Net(settings, screen, ship)
         nets.add(net)
         settings.net_limit -= 1
         # print(settings.net_limit)
         settings.net_width -= 2
         # print(settings.net_width)
+    if settings.net_limit < 0:
+        settings.game_active = False
 
 
 def create_row(settings, screen, fishes):

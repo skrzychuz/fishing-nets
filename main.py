@@ -25,10 +25,11 @@ def run_game():
     pygame.display.set_caption("One Hundred Fishing Nets")
     while True:
         fun.check_events(settings, screen, ship, nets)
-        ship.update_ship_position()
-        nets.update()
-        fun.update_fishes(settings, fishes)
-        fun.update_nets_number(settings, nets, fishes, screen)
+        if settings.game_active:
+            ship.update_ship_position()
+            nets.update()
+            fun.update_fishes(settings, fishes)
+            fun.update_nets_number(settings, nets, fishes, screen)
         fun.screen_update(settings, screen, ship, nets, fishes)
 
 
