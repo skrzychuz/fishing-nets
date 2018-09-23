@@ -14,3 +14,9 @@ class Settings():
         self.net_height = 5
         self.net_color = 60, 60, 60
         self.net_limit = 100
+
+
+        # Fish
+        self.rows_drop = 25
+        # 1 for right, -1 left
+        self.rows_direction = 1

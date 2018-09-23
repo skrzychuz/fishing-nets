@@ -5,7 +5,7 @@ from pygame.sprite import Sprite
 class Fishing_Net(Sprite):
 
     def __init__(self, settings, screen, ship):
-        super(Fishing_Net, self).__init__()
+        super().__init__()
         self.screen = screen
         self.rect = pygame.Rect(0, 0, settings.net_width,
                                 settings.net_height)
@@ -21,4 +21,4 @@ class Fishing_Net(Sprite):
 
     def draw_net(self):
         pygame.draw.rect(self.screen, self.color, self.rect)
-        print("net size:", self.rect.size)
+        # print("net size:", self.rect.size)
