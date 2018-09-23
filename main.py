@@ -28,7 +28,7 @@ def run_game():
         ship.update_ship_position()
         nets.update()
         fun.update_fishes(settings, fishes)
-        fun.update_nets_number(nets)
+        fun.update_nets_number(nets, fishes)
         fun.screen_update(settings, screen, ship, nets, fishes)
 
 

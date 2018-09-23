@@ -40,10 +40,11 @@ def screen_update(settings, screen, ship, nets, fishes):
     pygame.display.flip()
 
 
-def update_nets_number(nets):
+def update_nets_number(nets, fishes):
     for net in nets.copy():
         if net.rect.bottom <= 0:
             nets.remove(net)
+    collisions = pygame.sprite.groupcollide(nets, fishes, False, True)
 
 
 def fire(settings, screen, ship, nets):
