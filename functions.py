@@ -1,6 +1,7 @@
 import sys
 import pygame
 
+import settings
 from fishing_net import Fishing_Net
 from fish import Fish
 
@@ -40,10 +41,14 @@ def screen_update(settings, screen, ship, nets, fishes):
     pygame.display.flip()
 
 
-def update_nets_number(nets):
+
+def update_nets_number(settings, nets, fishes, screen):
     for net in nets.copy():
         if net.rect.bottom <= 0:
             nets.remove(net)
+    collisions = pygame.sprite.groupcollide(nets, fishes, False, True)
+    if len(fishes) == 0:
+        create_row(settings,screen, fishes)
 
 
 def fire(settings, screen, ship, nets):
@@ -65,7 +70,7 @@ def create_row(settings, screen, fishes):
     for row_index in range(number_rows):
         for fish_index in range(number_fish_in_row):
             new_fish = Fish(settings, screen)
-            new_fish.x = new_fish.rect.width + 1.5 * new_fish.rect.width * fish_index
+            new_fish.x = new_fish.rect.width - 1100 + 1.5 * new_fish.rect.width * fish_index
             new_fish.rect.x = new_fish.x
             new_fish.rect.y = new_fish.y = new_fish.rect.height + 1.5 * new_fish.rect.height * row_index
 
