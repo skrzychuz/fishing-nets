@@ -7,7 +7,8 @@ def name():
     start = "Your Name: "
     name = ""
     font = pygame.font.Font(None, 50)
-    while True:
+    flag = True
+    while flag:
         for evt in pygame.event.get():
             if evt.type == KEYDOWN:
                 if evt.unicode.isalpha():
@@ -24,6 +25,7 @@ def name():
         rect.center = screen.get_rect().center
         screen.blit(block, rect)
         pygame.display.flip()
+
 
 if __name__ == "__main__":
     asdf = name()

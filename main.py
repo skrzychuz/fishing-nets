@@ -2,6 +2,8 @@ import sys
 import pygame
 from pygame.sprite import Group
 
+import player
+from Scores import Scores
 from fish import Fish
 from fishing_net import Fishing_Net
 from settings import Settings
@@ -11,15 +13,14 @@ import pygame_textinput
 
 
 def run_game():
-
     pygame.init()
     settings = Settings()
     screen = pygame.display.set_mode((settings.screen_width, settings.screen_height))
 
     ship = Ship(screen)
     nets = Group()
-
     fishes = Group()
+    score = Scores(settings, screen)
 
     fun.create_row(settings, screen, fishes)
 
@@ -30,33 +31,13 @@ def run_game():
             ship.update_ship_position()
             nets.update()
             fun.update_fishes(settings, fishes)
-            fun.update_nets_number(settings, nets, fishes, screen)
+            fun.update_nets_number(settings, nets, fishes, screen, score)
+
         else:
-            # Create TextInput-object
-            textinput = pygame_textinput.TextInput()
+            name = player.name()
+            dupa = 5
 
-            screen = pygame.display.set_mode((1200, 800))
-            clock = pygame.time.Clock()
-
-            while True:
-                screen.fill((225, 225, 225))
-
-                events = pygame.event.get()
-                for event in events:
-                    if event.type == pygame.QUIT:
-                        exit()
-
-                # Feed it with events every frame
-                textinput.update(events)
-                # Blit its surface onto the screen
-                screen.blit(textinput.get_surface(), (10, 10))
-
-                pygame.display.update()
-                clock.tick(30)
-
-
-
-        fun.screen_update(settings, screen, ship, nets, fishes)
+        fun.screen_update(settings, screen, ship, nets, fishes, score)
 
 
 run_game()

@@ -2,6 +2,7 @@ import sys
 import pygame
 
 import settings
+from Scores import Scores
 from fishing_net import Fishing_Net
 from fish import Fish
 
@@ -32,23 +33,27 @@ def keyup_events(event, ship):
         ship.moving_left = False
 
 
-def screen_update(settings, screen, ship, nets, fishes):
+def screen_update(settings, screen, ship, nets, fishes, score):
     screen.fill(settings.bg_color)
     for net in nets.sprites():
         net.draw_net()
     ship.draw_ship()
     fishes.draw(screen)
+    score.show_score()
     pygame.display.flip()
 
 
-
-def update_nets_number(settings, nets, fishes, screen):
+def update_nets_number(settings, nets, fishes, screen, score):
     for net in nets.copy():
         if net.rect.bottom <= 0:
             nets.remove(net)
     collisions = pygame.sprite.groupcollide(nets, fishes, False, True)
+    if collisions:
+        settings.scores += 1
+        score.prep_score()
+        print(settings.scores)
     if len(fishes) == 0:
-        create_row(settings,screen, fishes)
+        create_row(settings, screen, fishes)
 
 
 def fire(settings, screen, ship, nets):

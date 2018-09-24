@@ -13,7 +13,7 @@ class Settings():
         self.net_width = 200
         self.net_height = 5
         self.net_color = 60, 60, 60
-        self.net_limit = 5
+        self.net_limit = 12
 
 
         # Fish
@@ -22,3 +22,5 @@ class Settings():
         self.rows_direction = 1
 
         self.game_active = True
+
+        self.scores = 0
