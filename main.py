@@ -9,7 +9,6 @@ from fishing_net import Fishing_Net
 from settings import Settings
 from ship import Ship
 import functions as fun
-import pygame_textinput
 
 
 def run_game():
@@ -40,4 +39,4 @@ def run_game():
         fun.screen_update(settings, screen, ship, nets, fishes, score)
 
 
-run_game()
+
