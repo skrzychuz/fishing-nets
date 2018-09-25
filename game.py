@@ -3,11 +3,10 @@ import sys
 import pygame
 from pygame.sprite import Group
 
-from new.fish import Fish
-from new.fishing_net import Fishing_Net
-from new.ship import Ship
+from fish import Fish
+from fishing_net import Fishing_Net
+from ship import Ship
 from settings import Settings
-import new.events as event
 
 
 class Game():

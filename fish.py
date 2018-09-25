@@ -1,17 +1,14 @@
 import pygame
 from pygame.sprite import Sprite
 
-
 class Fish(Sprite):
     def __init__(self, settings, screen):
         super().__init__()
         self.screen = screen
         self.settings = settings
-        #
-        self.image_right = pygame.image.load('images/fish_small_r.bmp')
+        self.image_right = pygame.image.load('../images/fish_small_r.bmp')
         self.image_left = pygame.transform.flip(self.image_right, True, False)
         self.image = self.image_right
-
 
         self.rect = self.image_right.get_rect()
 
@@ -35,3 +32,4 @@ class Fish(Sprite):
             self.image = self.image_left
 
         self.rect.x = self.x
+

@@ -22,3 +22,4 @@ class Fishing_Net(Sprite):
     def draw_net(self):
         pygame.draw.rect(self.screen, self.color, self.rect)
         # print("net size:", self.rect.size)
+
