@@ -1,10 +1,10 @@
-import sys
-
 import pygame
 from pygame.sprite import Group
 
+import player
 from fish import Fish
 from fishing_net import Fishing_Net
+from scoreboard import Scoretable
 from scores import Scores
 from ship import Ship
 from settings import Settings
@@ -14,36 +14,41 @@ import events as event
 class Game():
 
     def __init__(self):
+        pygame.init()
         self.settings = Settings()
         self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height))
         self.scores = self.settings.scores
         self.ship = Ship(self.screen)
         self.fish = Fish(self.settings, self.screen)
-        self.scores = Scores(self.settings, self.screen)
+        self.score_instance = Scores(self.settings, self.screen)
         self.fishes = Group()
         self.nets = Group()
         self.fishing_net = Fishing_Net(self.settings, self.screen, self.ship)
+        self.scoretable = Scoretable(self.screen)
 
     def run_game(self):
-        pygame.init()
         pygame.display.set_caption("One Hundred Fishing Nets")
         self.create_fishes_row()
 
         while True:
             event.check_events(self)
+
             if self.settings.game_active:
                 self.update_fishes()
                 self.nets.update()
                 self.update_nets_number()
+                self.screen_update()
+            else:
+                name = player.name(self.screen, self.settings)
+                self.scoretable.show(name, 88)
 
-            self.screen_update()
 
     def screen_update(self):
         self.screen.fill(self.settings.bg_color)
         self.ship.update_ship_position()
         self.ship.draw_ship()
         self.fishes.draw(self.screen)
-        self.scores.show_score()
+        self.score_instance.show_score()
         for net in self.nets.sprites():
             net.draw_net()
         pygame.display.flip()
@@ -78,31 +83,16 @@ class Game():
         self.settings.rows_direction *= -1
 
     def update_nets_number(self):
+        self.check_net_limit()
         for net in self.nets.copy():
             if net.rect.bottom <= 0:
                 self.nets.remove(net)
         collisions = pygame.sprite.groupcollide(self.nets, self.fishes, False, True)
         if collisions:
-            self.settings.scores += 1
-            self.scores.prep_score()
+            self.settings.scores += 10
+            self.score_instance.prep_score()
         if len(self.fishes) == 0:
             self.create_fishes_row()
-
-    # def update_nets_number(settings, nets, fishes, screen, score):
-    #     for net in nets.copy():
-    #         if net.rect.bottom <= 0:
-    #             nets.remove(net)
-    #     collisions = pygame.sprite.groupcollide(nets, fishes, False, True)
-    #     if collisions:
-    #         settings.scores += 1
-    #         score.prep_score()
-    #         print(settings.scores)
-    #     if len(fishes) == 0:
-    #
-    # create_row(settings, screen, fishes)
-
-
-
 
     def fire_net(self):
         if self.settings.net_limit >= 0:
@@ -112,8 +102,13 @@ class Game():
             # print(settings.net_limit)
             self.settings.net_width -= 2
             # print(settings.net_width)
-        if self.settings.net_limit < 0:
+        else:
+            self.check_net_limit()
+
+    def check_net_limit(self):
+        if self.settings.net_limit < 1 and len(self.nets) <= 0:
             self.settings.game_active = False
+
 
 
 
