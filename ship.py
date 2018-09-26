@@ -8,7 +8,7 @@ class Ship():
         self.screen = screen
         self.screen_rect = screen.get_rect()
 
-        self.image_right = pygame.image.load('../images/ship_right.bmp')
+        self.image_right = pygame.image.load('images/ship_right.bmp')
         self.image_left = pygame.transform.flip(self.image_right, True, False)
         self.image = self.image_right
 

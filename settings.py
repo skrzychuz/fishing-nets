@@ -19,7 +19,7 @@ class Settings():
         # 1 for right, -1 left
         self.rows_direction = 1
 
-        self.game_active = True
+        self.game_active = False
 
 
         self.scores = 0

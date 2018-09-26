@@ -6,7 +6,7 @@ class Fish(Sprite):
         super().__init__()
         self.screen = screen
         self.settings = settings
-        self.image_right = pygame.image.load('../images/fish_small_r.bmp')
+        self.image_right = pygame.image.load('images/fish_small_r.bmp')
         self.image_left = pygame.transform.flip(self.image_right, True, False)
         self.image = self.image_right
 
