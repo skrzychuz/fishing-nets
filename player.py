@@ -17,9 +17,9 @@ def name(screen, settings):
             elif evt.type == QUIT:
                 return
         screen.fill(settings.bg_color)
-        block = font.render("Your Name: " + name, True, settings.font_color)
+        block = font.render("Result: " + str(settings.scores) + "!!  " + "Insert Your Name: " + name, True,
+                            settings.font_color)
         rect = block.get_rect()
         rect.center = screen.get_rect().center
         screen.blit(block, rect)
         pygame.display.flip()
-

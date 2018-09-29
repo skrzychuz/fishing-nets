@@ -14,7 +14,7 @@ class Settings():
         self.net_width = 200
         self.net_height = 2
         self.net_color = 60, 60, 60
-        self.net_limit = 5
+        self.net_limit = 30
 
         # Fish
         self.rows_drop = 25
@@ -25,3 +25,6 @@ class Settings():
 
 
         self.scores = 0
+
+        self.url = 'https://api.myjson.com/bins/z3kww'
+        self.filename = 'data.json'
