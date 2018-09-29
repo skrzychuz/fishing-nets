@@ -33,10 +33,10 @@ def get_score():
 
 
 def get_best_ten():
-    print(sorted(get_score()["scores"], reverse=True, key=lambda x: x["score"]), )
+    return (sorted(get_score()["scores"], reverse=True, key=lambda x: x["score"]), )
 
 
-get_best_ten()
+# get_best_ten()
 
 # data["list"].append({'b':'2'})
 #

@@ -1,5 +1,8 @@
+import json
+
 import pygame
 import data as data
+
 
 class Scoretable():
 
@@ -15,39 +18,24 @@ class Scoretable():
         pygame.display.flip()
 
     def show2(self, name, settings):
+        self.screen.fill(settings.bg_color)
         data.add_score(name, settings.scores)
         json_data = data.get_best_ten()
+        myfont = pygame.font.Font(None, 40)
+        counter = 0
+        score_position = 0
 
-        for item in json_data['scores']:
-            name = item['name']
+        for item in json_data[0]:
+            counter += 1
+            json_name = item['name']
             score = item['score']
 
-        # myfont = pygame.font.Font(None, 30)
-        # textsurface = myfont.render(name + ":  " + stringresult, False, (80, 80, 80))
-        # textrect = text.get_rect()
-        # textrect.centerx = screen.get_rect().centerx
-        # textrect.centery = screen.get_rect().centery
-        #
-        # screen.fill((255, 255, 255))
-        # screen.blit(text, textrect)
-        #
-        # pygame.display.update()
-        #
-        #
-        #
-        #
-        #
-        #
-        # self.screen.fill(settings.bg_color)
-        # myfont = pygame.font.Font(None, 30)
-        # stringresult = str(settings.scores)
-        # textsurface = myfont.render(name + ":  " + stringresult, False, (80, 80, 80))
-        # self.screen.blit(textsurface, (0, 0))
-        # pygame.display.flip()
+            textsurface = myfont.render(str(counter) + ". " + json_name + ":  " + str(
+                score), True, settings.font_color, settings.bg_color)
+            score_position += 40
+            self.screen.blit(textsurface, (self.screen.get_rect().centerx -150, score_position))
 
+            pygame.display.flip()
+            if counter==10:
+                break
 
-    # def save_scores(self):
-    #     sd = SortedDict()
-    #     sd['c'] = 3
-    #     sd['a'] = 1
-    #     sd['b'] = 2

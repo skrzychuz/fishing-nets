@@ -23,11 +23,11 @@ class Ship():
 
     def update_ship_position(self):
         if self.moving_left and self.rect.left > self.screen_rect.left:
-            self.center_position -= 1.5
+            self.center_position -= 1.4
             self.image = self.image_left
 
         if self.moving_right and self.rect.right < self.screen_rect.right:
-            self.center_position += 1.5
+            self.center_position += 1.4
             self.image = self.image_right
 
         self.rect.centerx = self.center_position

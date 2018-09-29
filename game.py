@@ -42,9 +42,9 @@ class Game():
             else:
                 name = player.name(self.screen, self.settings)
                 self.screen.fill(self.settings.font_color)
-                self.scoretable.show(name, self.settings)
+                self.scoretable.show2(name, self.settings)
 
-                sleep(2)
+                sleep(5)
                 break
 
 
@@ -104,9 +104,7 @@ class Game():
             net = Fishing_Net(self.settings, self.screen, self.ship)
             self.nets.add(net)
             self.settings.net_limit -= 1
-            # print(settings.net_limit)
             self.settings.net_width -= 2
-            # print(settings.net_width)
         else:
             self.check_net_limit()
 

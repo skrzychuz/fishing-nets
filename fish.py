@@ -25,10 +25,10 @@ class Fish(Sprite):
 
     def update(self):
         if self.settings.rows_direction == 1:
-            self.x += 0.7 * self.settings.rows_direction
+            self.x += 1 * self.settings.rows_direction
             self.image = self.image_right
         if self.settings.rows_direction == -1:
-            self.x += 0.7 * self.settings.rows_direction
+            self.x += 1 * self.settings.rows_direction
             self.image = self.image_left
 
         self.rect.x = self.x
