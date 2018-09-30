@@ -25,4 +25,3 @@ class Settings():
         self.scores = 0
 
         self.url = 'https://api.myjson.com/bins/z3kww'
-        self.filename = 'data.json'

@@ -1,11 +1,6 @@
-import json
 import requests
 
 url = 'https://api.myjson.com/bins/z3kww'
-filename = 'data.json'
-
-with open(filename) as f:
-    data = json.load(f)
 
 
 def put_json(data):
@@ -18,6 +13,7 @@ def get_json():
     r = requests.get(url)
     print("Get Status Code:", r.status_code)
     return r.json()
+
 
 def add_score(name, score):
     json_data = get_json()
