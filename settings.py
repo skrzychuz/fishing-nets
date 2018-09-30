@@ -1,5 +1,4 @@
 class Settings():
-    """A class to store all settings for the game."""
 
     def __init__(self):
         # Screen settings
@@ -8,21 +7,20 @@ class Settings():
         self.bg_color = (231, 231, 231)
         self.font_color = (80, 80, 80)
 
-
         # Nets settings
         self.net_speed = 1.5
         self.net_width = 200
         self.net_height = 2
         self.net_color = 60, 60, 60
-        self.net_limit = 99
+        self.net_limit = 10 # 100 (one hundred)
 
         # Fish
         self.rows_drop = 0
+
         # 1 for right, -1 left
         self.rows_direction = 1
 
         self.game_active = True
-
 
         self.scores = 0
 

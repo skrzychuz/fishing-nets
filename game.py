@@ -3,7 +3,6 @@ from time import sleep
 import pygame
 from pygame.sprite import Group
 
-import player
 from fish import Fish
 from fishing_net import Fishing_Net
 from scoreboard import Scoretable
@@ -11,6 +10,7 @@ from scores_on_screen import Scores
 from ship import Ship
 from settings import Settings
 import events as event
+
 
 
 class Game():
@@ -40,10 +40,9 @@ class Game():
                 self.update_nets_number()
                 self.screen_update()
             else:
-                name = player.name(self.screen, self.settings)
+                name = self.scoretable.name(self.screen, self.settings)
                 self.screen.fill(self.settings.font_color)
-                self.scoretable.show2(name, self.settings)
-
+                self.scoretable.show(name, self.settings)
                 sleep(5)
                 break
 

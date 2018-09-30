@@ -1,6 +1,6 @@
 import sys
-
 import pygame
+
 
 def check_events(game):
     for event in pygame.event.get():
